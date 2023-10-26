@@ -20,7 +20,7 @@ export default class SpotifyConnection {
     return spotify;
   }
 
-  private async createPlaylistForTargetFeatures(
+  public async createPlaylistForTargetFeatures(
     targetFeatures: TargetMusicFeatures,
     petName: string
   ) {
