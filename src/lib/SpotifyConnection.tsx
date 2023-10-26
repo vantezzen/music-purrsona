@@ -22,7 +22,8 @@ export default class SpotifyConnection {
 
   public async createPlaylistForTargetFeatures(
     targetFeatures: TargetMusicFeatures,
-    petName: string
+    petName: string,
+    coverImage: string
   ) {
     const ownName = await this.getDisplayName();
     const playlistName = `${petName} and ${ownName}'s Playlist`;
@@ -32,7 +33,7 @@ export default class SpotifyConnection {
     });
 
     const tracks = await this.getTracksFittingTargetFeatures(targetFeatures);
-    const trackIds = tracks.map((t) => t.id);
+    const trackIds = tracks.map((t) => `spotify:track:${t.id}`);
 
     const trackIdsChunks = [];
     const chunkSize = 100;
@@ -43,6 +44,11 @@ export default class SpotifyConnection {
     for (const trackIdsChunk of trackIdsChunks) {
       await this.spotify.addTracksToPlaylist(playlist.body.id, trackIdsChunk);
     }
+
+    await this.spotify.uploadCustomPlaylistCoverImage(
+      playlist.body.id,
+      coverImage.replace("data:image/jpeg;base64,", "")
+    );
 
     return playlist.body.external_urls.spotify;
   }

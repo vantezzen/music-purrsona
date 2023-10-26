@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import RootProviders from "@/components/RootProviders";
+import Script from "next/script";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -24,7 +26,29 @@ export default function RootLayout({
           inter.variable
         )}
       >
-        <RootProviders>{children}</RootProviders>
+        <RootProviders>
+          {children}
+          <Footer />
+        </RootProviders>
+
+        <Script
+          src="https://scripts.simpleanalyticscdn.com/latest.js"
+          data-collect-dnt="true"
+        />
+        <noscript>
+          {/* eslint-disable @next/next/no-img-element */}
+          <img
+            src="https://queue.simpleanalyticscdn.com/noscript.gif"
+            alt=""
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </noscript>
+
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8508732166185621"
+          crossOrigin="anonymous"
+        ></Script>
       </body>
     </html>
   );

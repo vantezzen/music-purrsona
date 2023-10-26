@@ -2,7 +2,7 @@ import NextAuth, { AuthOptions } from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 
 const SPOTIFY_SCOPES =
-  "playlist-modify-private user-read-recently-played user-top-read";
+  "playlist-modify-private user-read-recently-played user-top-read ugc-image-upload";
 
 export const authOptions: AuthOptions = {
   providers: [
