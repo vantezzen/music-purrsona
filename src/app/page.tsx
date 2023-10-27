@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main>
+    <div>
       <Hero />
       <Steps />
       <Faq />
@@ -16,6 +16,6 @@ export default function Home() {
           <Link href="/app">Connect with Spotify</Link>
         </Button>
       </div>
-    </main>
+    </div>
   );
 }
