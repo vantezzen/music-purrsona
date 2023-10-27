@@ -20,7 +20,7 @@ const Stepper: FC<StepperProps> = ({ steps, progress }) => {
                 : index === progress
                 ? "bg-purple-500"
                 : "bg-zinc-800"
-            } rounded-full w-10 h-10`}
+            } rounded-full w-10 h-10 aspect-square`}
           >
             <Icon size={18} />
           </div>

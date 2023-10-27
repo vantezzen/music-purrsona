@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { trackEvent } from "@/lib/analytics";
 
 function ConfirmPetType({ onContinue }: { onContinue: () => void }) {
   const petType = useAppState((state) => state.petType);
@@ -33,7 +34,13 @@ function ConfirmPetType({ onContinue }: { onContinue: () => void }) {
       </p>
 
       <div className="flex gap-3 mt-8">
-        <Button className="w-full" onClick={onContinue}>
+        <Button
+          className="w-full"
+          onClick={() => {
+            trackEvent("pet_type_confirmed");
+            onContinue();
+          }}
+        >
           <Check size="1rem" />
         </Button>
         <Dialog>
@@ -48,13 +55,16 @@ function ConfirmPetType({ onContinue }: { onContinue: () => void }) {
             </DialogHeader>
 
             <p className="text-gray-400 text-sm">
-              It looks like John misidentified your pet. This is absolutely
-              unacceptable and we will be firing him immediately!
+              It looks like John misidentified your pet.
+              <br />
+              This is absolutely unacceptable and we will be firing him
+              immediately!
             </p>
 
             <DialogFooter>
               <Button
                 onClick={() => {
+                  trackEvent("pet_type_false");
                   onContinue();
                 }}
               >
@@ -63,7 +73,14 @@ function ConfirmPetType({ onContinue }: { onContinue: () => void }) {
             </DialogFooter>
           </DialogContent>
         </Dialog>
-        <Button className="w-full" variant="secondary" onClick={onContinue}>
+        <Button
+          className="w-full"
+          variant="secondary"
+          onClick={() => {
+            trackEvent("pet_type_unknown");
+            onContinue();
+          }}
+        >
           I don't know
         </Button>
       </div>

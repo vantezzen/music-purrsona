@@ -60,7 +60,7 @@ export default class SpotifyConnection {
     const possibleTracks = await this.getPossibleTracks();
 
     const tracksWithDistance = possibleTracks.map((track) => {
-      const distance = Math.sqrt(
+      let distance = Math.sqrt(
         Object.entries(features).reduce(
           (sum, [featureName, featureValue]) =>
             sum +
@@ -72,6 +72,12 @@ export default class SpotifyConnection {
           0
         )
       );
+      if (
+        track.name.toLowerCase().includes("cat") ||
+        track.name.toLowerCase().includes("dog")
+      ) {
+        distance *= 0.5;
+      }
       return { track, distance };
     });
 
@@ -89,7 +95,7 @@ export default class SpotifyConnection {
     return [...recentlyPlayedTracks, ...topTracks];
   }
 
-  private async getRecentlyPlayedTracks(amount = 2000) {
+  private async getRecentlyPlayedTracks(amount = 5000) {
     let nextPageUrl =
       "https://api.spotify.com/v1/me/player/recently-played?limit=50";
     let tracks: SpotifyApi.TrackObjectFull[] = [];
@@ -189,18 +195,6 @@ export default class SpotifyConnection {
     }
 
     return Array.from(trackList.values());
-  }
-
-  private async getDataForTrack(track: SpotifyApi.TrackObjectFull) {
-    return await (
-      await fetch(
-        `/api/song?title=${encodeURIComponent(
-          track.name
-        )}&artists=${encodeURIComponent(
-          track.artists.map((a) => a.name).join(", ")
-        )}`
-      )
-    ).json();
   }
 
   public async getDisplayName() {

@@ -5,6 +5,7 @@ import { useAppState } from "./appState";
 import { useEffect } from "react";
 import LoadingScreen from "../LoadingScreen";
 import AppContents from "./AppContents";
+import { trackEvent } from "@/lib/analytics";
 
 function App() {
   const spotifyToken = useSessionToken();
@@ -13,6 +14,7 @@ function App() {
 
   useEffect(() => {
     if (spotifyToken) {
+      trackEvent("spotify_token_received");
       setPurrsona(new Purrsona(spotifyToken));
     }
   }, [spotifyToken]);

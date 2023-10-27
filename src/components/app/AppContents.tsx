@@ -11,6 +11,8 @@ import { Step, useAppState } from "./appState";
 import CreatePlaylist from "./steps/CreatePlaylist";
 import PetName from "./steps/PetName";
 import PlaylistCreated from "./steps/PlaylistCreated";
+import FeaturesDisplay from "./FeaturesDisplay";
+import { trackEvent } from "@/lib/analytics";
 
 function AppContents() {
   const imageInput = React.useRef<HTMLInputElement>(null);
@@ -26,7 +28,7 @@ function AppContents() {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <Card>
-        <CardContent className="p-10 w-[600px]">
+        <CardContent className="p-10 w-[600px] max-w-[90vw]">
           <Stepper
             steps={[UserCircle2, Image, PawPrint, ListMusic]}
             progress={progress}
@@ -48,7 +50,9 @@ function AppContents() {
               onContinue={() => {
                 setStep(Step.CreatePlaylist);
                 setProgress(3);
+                trackEvent("creating_playlist");
                 purrsona.createPlaylist(imageInput.current!).then(() => {
+                  trackEvent("playlist_created");
                   setStep(Step.PlaylistCreated);
                 });
               }}
@@ -69,7 +73,9 @@ function AppContents() {
               if (e.target.files) {
                 setStep(Step.DetectPet);
                 setProgress(2);
+                trackEvent("image_uploaded");
                 purrsona.detectPet(e.target).then(() => {
+                  trackEvent("pet_detected");
                   setStep(Step.ConfirmPetType);
                 });
               }
