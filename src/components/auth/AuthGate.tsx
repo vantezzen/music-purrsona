@@ -1,7 +1,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import React, { useEffect } from "react";
 import { useAuthGateState } from "./authGateState";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import LoadingScreen from "../LoadingScreen";
 
 function AuthGate({ children }: { children: React.ReactNode }) {

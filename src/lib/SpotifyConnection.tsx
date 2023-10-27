@@ -1,7 +1,6 @@
 import SpotifyWebApi from "spotify-web-api-node";
 import debugging from "debug";
 import { fetchSpotifyWithLimitHandling } from "./fetchSpotifyWithLimitHandling";
-import { round } from "./utils";
 import { useAuthGateState } from "@/components/auth/authGateState";
 import { TargetMusicFeatures, Track } from "./types";
 const debug = debugging("app:player:SpotifyPlayer");

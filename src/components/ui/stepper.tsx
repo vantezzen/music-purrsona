@@ -1,4 +1,4 @@
-import { IconNode, LucideIcon } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import React, { FC } from "react";
 
 interface StepperProps {

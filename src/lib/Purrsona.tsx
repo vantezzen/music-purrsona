@@ -1,5 +1,5 @@
 import { useAppState } from "@/components/app/appState";
-import PetDetector, { PetType } from "./PetDetector";
+import PetDetector from "./PetDetector";
 import debugging from "debug";
 import SpotifyConnection from "./SpotifyConnection";
 import targetFeatures from "@/data/targetFeatures.json";

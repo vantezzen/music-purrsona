@@ -1,4 +1,3 @@
-import * as tf from "@tensorflow/tfjs";
 import * as tmImage from "@teachablemachine/image";
 import debugging from "debug";
 const debug = debugging("app:PetDetector");

@@ -1,11 +1,9 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Loader, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import React, { useEffect } from "react";
 import FeaturesDisplay from "../FeaturesDisplay";
 import { useAppState } from "../appState";
 import {
-  TransitionGroup,
   CSSTransition,
   SwitchTransition,
 } from "react-transition-group";

@@ -2,16 +2,14 @@
 import React from "react";
 import Stepper from "../ui/stepper";
 import { Image, ListMusic, PawPrint, UserCircle2 } from "lucide-react";
-import { Card, CardContent, CardHeader } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import ImageStep from "./steps/ImageStep";
 import DetectPet from "./steps/DetectPet";
-import Purrsona from "@/lib/Purrsona";
 import ConfirmPetType from "./steps/ConfirmPetType";
 import { Step, useAppState } from "./appState";
 import CreatePlaylist from "./steps/CreatePlaylist";
 import PetName from "./steps/PetName";
 import PlaylistCreated from "./steps/PlaylistCreated";
-import FeaturesDisplay from "./FeaturesDisplay";
 import { trackEvent } from "@/lib/analytics";
 
 function AppContents() {
