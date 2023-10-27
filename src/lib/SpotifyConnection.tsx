@@ -200,4 +200,18 @@ export default class SpotifyConnection {
     const response = await this.spotify.getMe();
     return response.body.display_name;
   }
+
+  public async ensureTokenIsValid() {
+    try {
+      await this.spotify.getMe();
+    } catch (e: any) {
+      console.error(e);
+      if (e.message.includes("The access token expired")) {
+        console.log("Token expired");
+        useAuthGateState.setState({ needsReauth: true });
+      }
+      throw e;
+    }
+    console.log("Token valid");
+  }
 }

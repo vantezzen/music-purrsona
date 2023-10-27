@@ -96,3 +96,7 @@
 .fade-exit-active {
   transition: opacity 500ms;
 }
+
+canvas {
+  display: none;
+}

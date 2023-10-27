@@ -15,6 +15,7 @@ export default class Purrsona {
     debug("Purrsona constructor");
 
     this.spotify = new SpotifyConnection(spotifyToken);
+    this.spotify.ensureTokenIsValid();
   }
 
   public async detectPet(inputElement: HTMLInputElement) {
