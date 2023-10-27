@@ -4,7 +4,7 @@ import SpotifyProvider from "next-auth/providers/spotify";
 const SPOTIFY_SCOPES =
   "playlist-modify-private user-read-recently-played user-top-read ugc-image-upload";
 
-export const authOptions: AuthOptions = {
+const authOptions: AuthOptions = {
   providers: [
     SpotifyProvider({
       clientId: process.env.SPOTIFY_CLIENT_ID,
