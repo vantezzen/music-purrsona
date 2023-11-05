@@ -62,7 +62,6 @@ function AppContents() {
           <input
             type="file"
             accept="image/*"
-            capture="environment"
             className="hidden"
             name="image"
             id="image"
